@@ -1,4 +1,5 @@
-const { expect } = require("chai")
+const { expect } = require("chai");
+const app = require('supertest')(require('../app'));
 
 describe("App", ()=> {
     describe('Home Page', ()=>{
@@ -7,4 +8,11 @@ describe("App", ()=> {
             expect(2).to.equal(result);
         });
     });
+    describe('GET "/" Route', ()=> {
+        it('GET "/" Route working', async()=>{
+            const response = await app.get('/');
+            expect(response.status).to.equal(200);
+            expect(response.text).to.contain('HELLO');
+        })
+    })
 });
