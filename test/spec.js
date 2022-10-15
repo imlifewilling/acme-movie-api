@@ -1,7 +1,11 @@
 const { expect } = require("chai");
 const app = require('supertest')(require('../app'));
+const {syncAndSeed, models} = require('../db');
 
 describe("App", ()=> {
+    beforeEach(async()=>{
+        await syncAndSeed();
+    })
     describe('Home Page', ()=>{
         it('1+1', () => {
             const result = 1+1;
